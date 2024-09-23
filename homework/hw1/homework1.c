@@ -1,5 +1,40 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
+
+int whileIsNotInt()
+{
+    int number;
+    while (scanf(" %d", &number) != 1)
+    {
+        // Clear invalid input from buffer
+        while (getchar() != '\n')
+            ; // Consume the rest of the input line
+
+        // Prompt the user to enter the input again
+        printf("Invalid input! Please enter a valid integer: ");
+    }
+    return number;
+}
+
+char whileIsNotChar()
+{
+    char answer;
+    while (true)
+    {
+        if (scanf(" %c", &answer) == 1 && (answer == 'y' || answer == 'n'))
+        {
+            return answer; // Valid input, exit loop
+        }
+
+        // Clear invalid input from buffer
+        while (getchar() != '\n')
+            ; // Consume the rest of the input line
+
+        // Prompt the user to enter the input again
+        printf("Invalid input! Please enter 'y' or 'n': ");
+    }
+}
 
 int main()
 {
@@ -11,23 +46,20 @@ int main()
     arrNumber = (int *)malloc(n * sizeof(int));
     if (arrNumber == NULL)
     {
-        printf("failed allocated memory.\n");
+        printf("Failed allocated memory.\n");
         return 1;
     }
 
     for (int i = 0; i < n; i++)
     {
-        int number;
         printf("Enter an integer: ");
-        scanf("%d", &number);
-        arrNumber[i] = number;
+        arrNumber[i] = whileIsNotInt();
     }
 
-    printf("do you want to continue enter integer?(y/n): ");
-    scanf(" %c", &answer);
+    printf("Do you want to continue enter integer?(y/n): ");
+    answer = whileIsNotChar();
     while (answer == 'y')
     {
-
         arrNumber = (int *)realloc(arrNumber, ++n * sizeof(int));
         if (arrNumber == NULL)
         {
@@ -37,11 +69,10 @@ int main()
 
         int number;
         printf("Enter an integer: ");
-        scanf("%d", &number);
-        arrNumber[n - 1] = number;
+        arrNumber[n - 1] = whileIsNotInt();
 
-        printf("do you want to continue enter integer?(y/n): ");
-        scanf(" %c", &answer);
+        printf("Do you want to continue enter integer?(y/n): ");
+        answer = whileIsNotChar();
     }
 
     for (int i = 0; i < n; i++)
