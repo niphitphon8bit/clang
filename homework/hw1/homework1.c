@@ -60,12 +60,16 @@ int main()
     answer = whileIsNotChar();
     while (answer == 'y')
     {
-        arrNumber = (int *)realloc(arrNumber, ++n * sizeof(int));
-        if (arrNumber == NULL)
+        int *tempArr;
+        tempArr = (int *)realloc(arrNumber, ++n * sizeof(int));
+        if (tempArr == NULL)
         {
             printf("Reallocation fail.\n");
+            free(arrNumber);
             return 2;
         }
+
+        arrNumber = tempArr;
 
         int number;
         printf("Enter an integer: ");
