@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
 int whileIsNotInt()
 {
@@ -64,14 +63,13 @@ int main()
         tempArr = (int *)realloc(arrNumber, ++n * sizeof(int));
         if (tempArr == NULL)
         {
-            printf("Reallocation fail.\n");
+            printf("Reallocation failed while resizing to %d elements.\n", n);
             free(arrNumber);
             return 2;
         }
 
         arrNumber = tempArr;
 
-        int number;
         printf("Enter an integer: ");
         arrNumber[n - 1] = whileIsNotInt();
 
@@ -79,6 +77,7 @@ int main()
         answer = whileIsNotChar();
     }
 
+    printf("\nYou entered %d integers:\n", n);
     for (int i = 0; i < n; i++)
     {
         printf("arrNumber[%d]: %d\n", i, arrNumber[i]);
