@@ -1,0 +1,41 @@
+# Object files
+*.o
+*.obj
+
+# Executable files
+*.exe
+*.out
+*.app
+
+# Libraries
+*.lib
+*.a
+*.so
+*.dylib
+
+# Debug files
+*.dSYM/
+*.pdb
+*.ilk
+*.map
+
+# Dependency files
+*.d
+
+# Core dumps
+core
+*.core
+
+# IDE specific files
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Mac specific files
+.DS_Store
+
+# Build directories
+/build/
